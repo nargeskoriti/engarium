@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>نظرسنجی انگاریوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap"></noscript>
+<style>
+:root,:root[data-theme="dark"]{--bg:#05081a;--card:rgba(14,19,52,.66);--line:rgba(255,255,255,.17);--tx:#eef1ff;--mut:#a9b0d6;--ac:#ffc857;--ac2:#7c9cff;--ink:#14173a;--bad:#ff8f8f;color-scheme:dark}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100vh;min-height:100dvh;color:var(--tx);font-family:Vazirmatn,Tahoma,system-ui,sans-serif;line-height:1.8;background:radial-gradient(60% 40% at 15% 15%,rgba(199,125,255,.2),transparent 70%),radial-gradient(55% 45% at 90% 30%,rgba(124,156,255,.2),transparent 70%),var(--bg)}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:1;max-width:520px;margin:0 auto;padding:14px 16px 40px}
+.brand{font-weight:800;font-size:18px;cursor:default}.brand small{display:block;font-weight:400;font-size:12px;color:var(--mut);line-height:1.3}
+#dome{width:100%;display:block;margin:6px 0 4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px 18px;backdrop-filter:blur(10px);animation:in .4s ease;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+@keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+h1{font-size:21px;line-height:1.6;margin:0 0 4px;font-weight:800}
+h2{font-size:14px;color:var(--mut);margin:14px 0 8px;font-weight:600}
+.sub{color:var(--mut);font-size:14px;margin:0 0 16px}
+.dt{display:flex;gap:8px}.dt select{flex:1}
+select,input[type=text],input[type=tel],textarea{width:100%;background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:14px;color:var(--tx);font:inherit;font-size:15px;padding:11px 12px}
+textarea{resize:vertical}select option{background:#14173a}
+:is(select,input,textarea):focus{outline:2px solid var(--ac2);outline-offset:1px}
+.err{color:var(--bad);font-size:13px;min-height:20px}
+.chip{border:1px solid var(--line);background:transparent;color:var(--tx);font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer;margin:0 0 8px}
+.chip.on{background:var(--ac2);border-color:var(--ac2);color:var(--ink);font-weight:600}
+.pk{display:block;width:100%;text-align:start;border-radius:14px;padding:10px 14px}
+.sel{display:flex;justify-content:space-between;align-items:center;gap:8px;background:rgba(124,156,255,.15);border:1px solid var(--ac2);border-radius:14px;padding:10px 14px}
+.sel button{background:none;border:0;color:var(--mut);font-size:18px;cursor:pointer}
+.qc{padding:14px 0;border-bottom:1px dashed var(--line)}.qc:last-child{border:0}
+.qc p{margin:0 0 10px;font-weight:600;font-size:15px}
+.sc,.ends{direction:ltr}.sc{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sc button{aspect-ratio:1;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--tx);font:inherit;font-size:18px;cursor:pointer}
+.sc button.on{background:var(--ac);color:var(--ink);border-color:var(--ac);font-weight:800;box-shadow:0 0 14px rgba(255,200,87,.7)}
+.ends{display:flex;justify-content:space-between;color:var(--mut);font-size:12px;margin:6px 0 8px}
+.sc.em button{font-size:26px;border-radius:18px;aspect-ratio:auto;padding:8px 0;filter:grayscale(.8);opacity:.7;transition:transform .15s}.sc.em button.on{filter:none;opacity:1;transform:scale(1.18);background:rgba(255,200,87,.2)}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}.cd{border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--tx);font:inherit;font-size:14px;border-radius:16px;padding:14px 8px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px}.cd b{font-size:26px;font-weight:400}.cd.on{border-color:var(--ac);background:rgba(255,200,87,.16);box-shadow:0 0 16px rgba(255,200,87,.35)}
+.moons{display:flex;justify-content:space-between;direction:ltr}.moons button{background:none;border:2px solid transparent;border-radius:50%;padding:0;cursor:pointer;opacity:.5;transition:.15s;line-height:0}.moons button.on{opacity:1;transform:scale(1.15);border-color:var(--ac);box-shadow:0 0 18px rgba(255,200,87,.6)}
+.lab{text-align:center;color:var(--ac);font-size:13px;min-height:22px;margin-top:6px}
+.sl{direction:ltr;display:flex;align-items:center;gap:12px}.sl input{flex:1;padding:0;border:0;background:none;accent-color:var(--ac2)}.sl b{min-width:84px;text-align:center;color:var(--mut);font-size:13px;direction:rtl}.sl input.t+b{color:var(--ac)}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.moons svg{width:min(46px,12.5vw);height:auto}.card{overflow-wrap:anywhere}
+@media (max-width:380px){h1{font-size:19px}.card{padding:18px 13px}.sl b{min-width:68px}.cards{gap:8px}.cd{padding:12px 6px;font-size:13px}.btn.ghost{flex-basis:72px}}
+.hint{color:var(--mut);font-size:12px;margin:4px 0}
+.nav{display:flex;gap:10px;margin-top:18px}
+.btn{flex:1;border:0;border-radius:14px;padding:13px;font:inherit;font-weight:800;font-size:16px;cursor:pointer;background:linear-gradient(90deg,var(--ac),#ffb347);color:var(--ink)}
+.btn:disabled{opacity:.35;cursor:not-allowed}.btn.ghost{flex:0 0 90px;background:transparent;color:var(--tx);border:1px solid var(--line);font-weight:600}
+.thanks{text-align:center}.thanks svg{width:100%;max-width:330px;display:block;margin:4px auto}.thanks a{color:var(--ac2)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="wrap">
+  <div class="brand" id="brand">انگاریوم<small>آسمان‌نمای دانشگاه فردوسی مشهد</small></div>
+  <svg id="dome" viewBox="0 0 400 130" aria-hidden="true"></svg>
+  <div class="card" id="card">
+    <h1 id="t"></h1><p class="sub" id="s"></p><div id="b"></div>
+    <div class="nav"><button class="btn ghost" id="back">قبلی</button><button class="btn" id="next">ادامه</button></div>
+  </div>
+</div>
+<script>
+const CFG={url:'https://toxkvknzhdsbscqeybts.supabase.co',key:'sb_publishable_CZUHj_-NaIo_7-DZ-zh92A_X8_MI_ID'};
+const $=id=>document.getElementById(id),fa=n=>(+n).toLocaleString('fa-IR',{useGrouping:false});
+const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nz=s=>(s||'').replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/\u200c/g,' ').toLowerCase();
+let sb,P={group:'بازدید گروهی / مدارس / سازمان‌ها',obs:'رصدها',work:'کارگاه‌های آموزشی',dome:'اکران‌های ۳۶۰ درجه'};
+const qp=new URLSearchParams(location.search).get('p');
+const PM=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const JF=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric'});
+const jp=d=>{const o={};JF.formatToParts(d).forEach(p=>o[p.type]=p.value);return[+o.year,+o.month,+o.day]};
+const pad=n=>String(n).padStart(2,'0');
+const noon=()=>{const d=new Date();d.setHours(12,0,0,0);return d};
+function iso(y,m,dd){for(let i=0;i<1100;i++){const d=new Date(noon()-i*864e5),j=jp(d);if(j[0]===y&&j[1]===m&&j[2]===dd)return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())}return null}
+const QS=[
+['q1','در مجموع، چقدر از شرکت در این برنامهٔ انگاریوم رضایت داشتید؟','خیلی ناراضی','خیلی راضی'],
+['q2','محتوای علمی، آموزشی یا نمایشی برنامه را چگونه ارزیابی می‌کنید؟','ضعیف','عالی'],
+['q3','کیفیت اجرای برنامه را چگونه ارزیابی می‌کنید؟','ضعیف','عالی'],
+['q4','مطالب و توضیحات ارائه‌شده در برنامه تا چه اندازه برای شما قابل‌فهم بود؟','اصلاً','کاملاً'],
+['q5','زمان‌بندی و نظم برگزاری برنامه را چگونه ارزیابی می‌کنید؟','ضعیف','عالی'],
+['q6','فضای مجموعه و امکانات مورد استفاده در این برنامه را چگونه ارزیابی می‌کنید؟','ضعیف','عالی',1],
+['q7','چقدر تمایل دارید در آینده در برنامه‌های دیگری از انگاریوم شرکت کنید؟','اصلاً','حتماً'],
+['q8','نحوهٔ برخورد و راهنمایی کارکنان انگاریوم را چگونه ارزیابی می‌کنید؟','ضعیف','عالی',1]];
+const WD=['','ضعیف','متوسط','خوب','عالی','خارق‌العاده'],WT={q1:'moon',q2:'sl',q3:'num',q4:'sl',q5:'pill',q6:'moon',q7:'num',q8:'sl'};
+const moon=i=>{const f=[0,.12,.3,.5,.75,1][i],rx=18*Math.abs(1-2*f),sw=f<.5?0:1;return `<svg width="46" height="46" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#2a3170"/><path d="M20 2A18 18 0 0 1 20 38A${rx} 18 0 0 ${sw} 20 2Z" fill="#ffe9a8"/><circle cx="20" cy="20" r="18" fill="none" stroke="rgba(255,255,255,.35)"/></svg>`};
+const wg=(k,v)=>{const t=WT[k],B=(n,x,c)=>`<button type="button" class="${c||''}${v===n?' on':''}" data-t="r" data-k="${k}" data-v="${n}" aria-label="${fa(n)}">${x}</button>`;
+ if(t==='moon')return `<div class="moons">${[1,2,3,4,5].map(n=>B(n,moon(n))).join('')}</div><div class="lab">${WD[v]||''}</div>`;
+ if(t==='sl')return `<div class="sl"><input type="range" min="1" max="5" step="1" value="${v||3}" data-sl="${k}" class="${v?'t':''}"><b>${v?WD[v]:'نوار را بکشید'}</b></div>`;
+ if(t==='pill')return `<div class="pills">${[1,2,3,4,5].map(n=>B(n,WD[n],'chip')).join('')}</div>`;
+ return `<div class="sc">${[1,2,3,4,5].map(n=>B(n,fa(n))).join('')}</div>`};
+const INTRO={t:()=>'چراغ‌ها که خاموش شد، چه دیدید؟',s:()=>'دو دقیقه وقت شما، یک برنامهٔ بهتر برای بازدیدکنندگان بعدی انگاریوم.',r:()=>`<div style="display:flex;justify-content:center;margin:14px 0">${moon(5)}</div>`,v:()=>true,n:'شروع سفر'};
+const HI=[['🌌','اکران ۳۶۰ درجه'],['🔭','رصد آسمان'],['🎙️','توضیحات مجری'],['🧑‍🏫','کارگاه آموزشی'],['🪐','محتوای علمی'],['🛋️','فضا و امکانات']];
+const WHO=[['🧍','تنها'],['👨‍👩‍👧','خانواده'],['🎒','مدرسه / دانشگاه'],['🧑‍🤝‍🧑','دوستان']];
+const SRC=[['📱','شبکه‌های اجتماعی'],['🗣️','دوستان و آشنایان'],['🏫','مدرسه / دانشگاه'],['🔎','جست‌وجو / سایر']];
+const t0=jp(noon());
+let S={jy:t0[0],jm:t0[1],jd:t0[2],prog:'',q:{},na:{},why:{},improve:'',hi:[],who:'',src:'',phone:'',hp:''},idx=0;
+const lowAny=()=>Object.values(S.q).some(v=>v<=2);
+const phoneN=()=>{const s=S.phone.replace(/[۰-۹]/g,c=>c.charCodeAt(0)-1776).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[\s-]/g,'');if(!s)return'';const m=s.match(/^(?:\+98|0098|98|0)?(9\d{9})$/);return m?'0'+m[1]:null};
+const opts=(a,c)=>a.map(([v,l])=>`<option value="${v}" ${v==c?'selected':''}>${l}</option>`).join('');
+const grp=(a)=>({t:()=>'به سؤال‌ها پاسخ دهید',s:()=>'با ماه، نوار یا عدد پاسخ دهید',r:()=>a.map(i=>{const[k,tx,lo,hi,na]=QS[i],v=S.q[k];return `<div class="qc"><p>${fa(i+1)}. ${tx}</p>${wg(k,v)}<div class="ends"><span>${lo}</span><span>${hi}</span></div>${na?`<button type="button" class="chip ${S.na[k]?'on':''}" data-t="na" data-k="${k}">مربوط به این برنامه نبود</button>`:''}${v&&v<=2?`<textarea data-w="${k}" rows="2" placeholder="لطفاً دلیل را بنویسید...">${e(S.why[k]||'')}</textarea><p class="hint">برای پیگیری، شمارهٔ تماس خود را در مرحلهٔ آخر بنویسید.</p>`:''}</div>`}).join(''),v:()=>a.every(i=>S.q[QS[i][0]]||S.na[QS[i][0]])});
+const ST=[
+INTRO,
+{t:()=>'چه زمانی و در کدام برنامه شرکت کردید؟',s:()=>'تاریخ شرکت و نام برنامه را مشخص کنید.',r:()=>`<h2>تاریخ شرکت در برنامه</h2><div class="dt"><select data-k="jd">${opts(Array.from({length:31},(_,i)=>[i+1,fa(i+1)]),S.jd)}</select><select data-k="jm">${opts(PM.map((n,i)=>[i+1,n]),S.jm)}</select><select data-k="jy">${opts([t0[0]-1,t0[0]].map(y=>[y,fa(y)]),S.jy)}</select></div><div class="err" id="de"></div><h2>نام برنامه</h2>`+(S.prog?`<div class="sel"><span>${e(P[S.prog]||'')}</span><button type="button" data-t="clr" aria-label="تغییر">✕</button></div>`:`<input id="ps" type="text" placeholder="بخشی از نام برنامه را بنویسید..." autocomplete="off"><div id="pl" style="margin-top:8px"></div>`),v:()=>!!iso(S.jy,S.jm,S.jd)&&!!S.prog},
+grp([0,1,2]),grp([3,4,5]),grp([6,7]),
+{t:()=>'تجربهٔ شما از نزدیک',s:()=>'چند انتخاب سریع؛ همه اختیاری هستند',r:()=>`<h2>کدام بخش برایتان جذاب‌تر بود؟ (چند گزینه)</h2><div class="cards">${HI.map(([i,l])=>`<button type="button" class="cd ${S.hi.includes(l)?'on':''}" data-t="mc" data-v="${l}"><b>${i}</b>${l}</button>`).join('')}</div><h2>با چه کسانی آمدید؟</h2><div class="cards">${WHO.map(([i,l])=>`<button type="button" class="cd ${S.who===l?'on':''}" data-t="one" data-k="who" data-v="${l}"><b>${i}</b>${l}</button>`).join('')}</div><h2>از کجا با انگاریوم آشنا شدید؟</h2><div class="cards">${SRC.map(([i,l])=>`<button type="button" class="cd ${S.src===l?'on':''}" data-t="one" data-k="src" data-v="${l}"><b>${i}</b>${l}</button>`).join('')}</div>`,v:()=>true},
+{t:()=>'پیشنهاد شما',s:()=>'آخرین مرحله',r:()=>`<h2>چه پیشنهادی برای بهبود برنامه‌ها و خدمات انگاریوم دارید؟</h2><textarea data-k="improve" rows="5" placeholder="پیشنهاد یا انتقاد شما (اختیاری)">${e(S.improve)}</textarea><h2>${lowAny()?'شمارهٔ تماس برای پیگیری نظر شما (اختیاری، پیشنهاد می‌شود)':'شمارهٔ تماس (اختیاری)'}</h2><input type="tel" inputmode="tel" data-k="phone" value="${e(S.phone)}" placeholder="۰۹۱۲۰۰۰۰۰۰۰"><div class="err" id="pe"></div><input data-k="hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">`,v:()=>phoneN()!==null,n:'ارسال نظر'}
+];
+const N=[[60,100],[105,60],[150,82],[200,34],[250,76],[300,54],[345,98]];
+function dome(k){$('dome').innerHTML=`<path d="M8 126A192 120 0 0 1 392 126Z" fill="rgba(124,156,255,.07)" stroke="rgba(255,255,255,.28)"/>`+N.slice(1,k).map((p,i)=>`<line x1="${N[i][0]}" y1="${N[i][1]}" x2="${p[0]}" y2="${p[1]}" stroke="rgba(255,200,87,.6)"/>`).join('')+N.map((p,i)=>i<k?`<circle cx="${p[0]}" cy="${p[1]}" r="11" fill="#ffc857" opacity=".18"/><circle cx="${p[0]}" cy="${p[1]}" r="4.5" fill="#ffc857"/>`:`<circle cx="${p[0]}" cy="${p[1]}" r="2" fill="#fff" opacity=".4"/>`).join('')}
+function pl(){const el=$('pl');if(!el)return;const q=nz($('ps').value).trim(),r=Object.entries(P).filter(([i,n])=>!q||nz(n).includes(q)).slice(0,8);el.innerHTML=r.length?r.map(([i,n])=>`<button type="button" class="chip pk" data-t="prog" data-v="${e(i)}">${e(n)}</button>`).join(''):'<p class="hint">برنامه‌ای با این نام پیدا نشد.</p>'}
+function upd(){$('next').disabled=!ST[idx].v();const de=$('de');if(de)de.textContent=iso(S.jy,S.jm,S.jd)?'':'این تاریخ معتبر نیست یا در آینده است.';const pe=$('pe');if(pe)pe.textContent=phoneN()===null?'شمارهٔ موبایل معتبر نیست (مثلاً ۰۹۱۲۳۴۵۶۷۸۹).':''}
+function show(){const X=ST[idx];$('t').textContent=X.t();$('s').textContent=X.s();$('b').innerHTML=X.r();$('back').style.visibility=idx?'visible':'hidden';$('next').textContent=X.n||'ادامه';dome(Math.round(7*idx/(ST.length-1)));pl();upd()}
+const body=$('b');
+body.addEventListener('click',ev=>{const b=ev.target.closest('button[data-t]');if(!b)return;const{t,k,v}=b.dataset;
+ if(t==='r'){S.q[k]=+v;delete S.na[k]}else if(t==='na'){S.na[k]=!S.na[k];if(S.na[k]){delete S.q[k];delete S.why[k]}}
+ else if(t==='mc'){const a=S.hi,i=a.indexOf(v);i<0?a.push(v):a.splice(i,1)}else if(t==='one')S[k]=S[k]===v?'':v;else if(t==='prog')S.prog=v;else if(t==='clr')S.prog='';
+ const y=scrollY;show();scrollTo(0,y)});
+body.addEventListener('change',ev=>{if(ev.target.dataset.sl){const y=scrollY;show();scrollTo(0,y)}});
+body.addEventListener('input',ev=>{const d=ev.target.dataset;
+ if(d.sl){S.q[d.sl]=+ev.target.value;delete S.na[d.sl];ev.target.className='t';ev.target.nextElementSibling.textContent=WD[+ev.target.value];upd();return}
+ if(d.w!==undefined)S.why[d.w]=ev.target.value;else if(d.k)S[d.k]=d.k[0]==='j'?+ev.target.value:ev.target.value;
+ if(ev.target.id==='ps')pl();upd()});
+$('back').onclick=()=>{if(idx>0){idx--;show()}};
+$('next').onclick=async()=>{
+ if(idx<ST.length-1){idx++;show();scrollTo(0,0);return}
+ $('next').disabled=true;
+ if(!S.hp){
+  if(!sb){$('next').disabled=false;alert('اتصال به سرور برقرار نیست؛ لطفاً بعداً دوباره تلاش کنید.');return}
+  const q={};QS.forEach(([k])=>{if(S.q[k])q[k]=S.q[k]});const why={};Object.keys(S.why).forEach(k=>{if(S.q[k]<=2&&S.why[k].trim())why[k]=S.why[k].trim()});
+  const{error}=await sb.from('responses').insert({program:S.prog,attended_on:iso(S.jy,S.jm,S.jd),q,why,overall:q.q1||null,improve:S.improve.trim()||null,extra:{highlights:S.hi,with:S.who||null,source:S.src||null},contact:phoneN()||null});
+  if(error){$('next').disabled=false;alert('ارسال انجام نشد؛ لطفاً دوباره تلاش کنید.');return}
+ }
+ thanks();
+};
+function thanks(){
+ dome(7);const v=QS.map(([k])=>S.q[k]||3);
+ const Pt=[[40,100],[90,50],[140,95],[190,40],[235,90],[270,45],[300,100],[320,60]];
+ const lines=Pt.slice(1).map((p,i)=>`<line x1="${Pt[i][0]}" y1="${Pt[i][1]}" x2="${p[0]}" y2="${p[1]}" stroke="rgba(255,255,255,.35)"/>`).join('');
+ const dots=Pt.map((p,i)=>`<circle cx="${p[0]}" cy="${p[1]}" r="${7+v[i]*3}" fill="#ffc857" opacity=".12"/><circle cx="${p[0]}" cy="${p[1]}" r="${2+v[i]*2.2}" fill="#ffc857"/>`).join('');
+ $('card').className='card thanks';
+ $('card').innerHTML=`<h1>سپاس از نظر شما</h1><p class="sub">این صورت فلکی را پاسخ‌های شما ساخته؛ ستارهٔ بزرگ‌تر یعنی نمرهٔ بالاتر.</p><svg viewBox="0 0 340 150" role="img" aria-label="صورت فلکی نظر شما">${lines}${dots}</svg><p class="sub">نظر شما مستقیم به تیم برنامه‌ریزی انگاریوم می‌رسد. آسمان صاف!</p>`;scrollTo(0,0);
+}
+// آسمان
+const cv=$('sky'),cx=cv.getContext('2d');let st=[],sh=null,mx=0,my=0;
+function size(){cv.width=innerWidth;cv.height=innerHeight;st=Array.from({length:Math.min(140,Math.floor(innerWidth/5))},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*1.3+.2,p:Math.random()*6.3,z:Math.random()+.2}))}
+addEventListener('pointermove',ev=>{mx=ev.clientX/innerWidth-.5;my=ev.clientY/innerHeight-.5});
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function draw(t){cx.clearRect(0,0,cv.width,cv.height);cx.fillStyle='#fff';
+ for(const s of st){cx.globalAlpha=.35+.65*Math.abs(Math.sin(t/1400+s.p));cx.beginPath();cx.arc(s.x+mx*s.z*28,s.y+my*s.z*28,s.r,0,6.3);cx.fill()}
+ if(!still){if(!sh&&Math.random()<.004)sh={x:Math.random()*cv.width*.7,y:Math.random()*cv.height*.4,l:0};
+  if(sh){cx.globalAlpha=1-sh.l/60;cx.strokeStyle='#fff';cx.beginPath();cx.moveTo(sh.x,sh.y);cx.lineTo(sh.x-30,sh.y-13);cx.stroke();sh.x+=9;sh.y+=4;if(++sh.l>60)sh=null}requestAnimationFrame(draw)}}
+addEventListener('resize',size);size();requestAnimationFrame(draw);
+if(P[qp])S.prog=qp;
+show();
+// اتصال به دیتابیس بعد از نمایش صفحه (بدون مسدود کردن بارگذاری)
+function loadSB(){const sc=document.createElement('script');sc.src='supabase.js';sc.async=true;
+ sc.onload=async()=>{try{sb=supabase.createClient(CFG.url,CFG.key);
+  const{data}=await sb.from('programs').select('*').eq('active',true).order('name');
+  if(data&&data.length){const t=new Date(),td=t.getFullYear()+'-'+pad(t.getMonth()+1)+'-'+pad(t.getDate());
+   P={};data.filter(p=>(!p.starts_on||p.starts_on<=td)&&(!p.ends_on||p.ends_on>=td)).forEach(p=>P[p.id]=p.name);
+   if(S.prog&&!P[S.prog])S.prog='';if(P[qp])S.prog=qp;
+   if(idx===1)show();else upd()}
+ }catch(x){}};
+ document.head.appendChild(sc)}
+setTimeout(loadSB,30);
+</script>
+</body>
+</html>

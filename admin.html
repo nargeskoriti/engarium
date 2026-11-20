@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>پنل مدیریت انگاریوم</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap"></noscript>
+<style>
+:root{--bg:#070b1f;--card:#111737;--line:rgba(255,255,255,.15);--tx:#eef1ff;--mut:#a9b0d6;--ac:#ffc857;--ac2:#7c9cff;--ink:#14173a;--bad:#ff8f8f;color-scheme:dark;box-sizing:border-box}
+*{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--tx);font:14px/1.8 Vazirmatn,Tahoma,system-ui,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+.w{max-width:1100px;margin:0 auto;padding:16px}
+header{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}h1{font-size:19px;margin:0}h3{margin:0 0 8px;font-size:14px;color:var(--mut);font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;overflow-wrap:anywhere}
+input,select,button,textarea{font:inherit;color:var(--tx);background:#0b1030;border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+button{cursor:pointer}.pri{background:var(--ac);color:var(--ink);border:0;font-weight:800}.dg{color:var(--bad)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}.tabs button.on{background:var(--ac2);color:var(--ink);border:0}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:end}.bar label{display:flex;flex-direction:column;font-size:12px;color:var(--mut);flex:1 1 150px}.bar input:not([type=checkbox]),.bar select{width:100%}
+label.ck{flex-direction:row!important;align-items:center;gap:6px;flex:0 0 auto!important;color:var(--tx)!important;font-size:13px!important}
+.kp{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(130px,45%),1fr));gap:10px}.kp div{background:#0b1030;border-radius:12px;padding:10px 14px;font-size:12px;color:var(--mut)}.kp b{display:block;font-size:22px;color:var(--ac)}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px}.g2 .card{margin:0}.g2 .w2{grid-column:1/-1}
+.ch{position:relative;height:300px}
+.sc{overflow-x:auto;-webkit-overflow-scrolling:touch}table{border-collapse:collapse;width:100%}th,td{padding:7px;border-bottom:1px solid var(--line);text-align:start;vertical-align:top;white-space:nowrap}th{color:var(--mut);font-weight:600;font-size:12px}
+.m{color:var(--mut);font-size:12px}.tag{background:#0b1030;border-radius:8px;padding:0 8px;font-size:12px}.pos{color:#7be3a8}.neg{color:var(--bad)}.lk{background:none;border:0;color:var(--ac2);padding:0}
+.rc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;overflow-wrap:anywhere}.rc.lo{border-color:rgba(255,143,143,.45)}.rc p{margin:6px 0}
+.ph{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sq{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.pa{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.pf{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:10px}.pf label{display:flex;flex-direction:column;font-size:12px;color:var(--mut)}.pf .w2{grid-column:1/-1}.pf input:not([type=checkbox]),.pf select{width:100%}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:12px}.pc{background:#0b1030;border:1px solid var(--line);border-radius:14px;padding:14px;overflow-wrap:anywhere}
+#login{max-width:340px;margin:12vh auto}#login input{width:100%}#login .f{margin-bottom:10px}
+.pw{position:relative}.pw input{padding-right:44px}.pw button{position:absolute;right:4px;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--mut);padding:6px;line-height:0}.pw button.on{color:var(--ac)}.pw button:not(.on) .sl{display:none}
+@media (max-width:600px){.w{padding:10px}.card{padding:12px}h1{font-size:17px}.ch{height:260px}#login{margin:6vh auto}}
+</style>
+</head>
+<body>
+<div class="w" id="app"></div>
+<script>
+const CFG={url:'https://toxkvknzhdsbscqeybts.supabase.co',key:'sb_publishable_CZUHj_-NaIo_7-DZ-zh92A_X8_MI_ID'};
+const $=id=>document.getElementById(id),fa=n=>(+n).toLocaleString('fa-IR',{useGrouping:false});
+const e=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const QN={q1:'رضایت کلی',q2:'محتوا',q3:'کیفیت اجرا',q4:'قابل‌فهم بودن',q5:'زمان‌بندی',q6:'فضا و امکانات',q7:'تمایل به شرکت مجدد',q8:'برخورد کارکنان'};
+const CATS=['برنامهٔ عمومی','رصد','کارگاه آموزشی','اکران گنبد','بازدید گروهی','سایر'],COL=['#ffc857','#7c9cff','#c77dff','#4fd1a5','#ff7a7a','#5ec8ff','#ffa94d','#b8e986'];
+const PM=['فروردین','اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'];
+const JF=new Intl.DateTimeFormat('en-u-ca-persian-nu-latn',{year:'numeric',month:'numeric',day:'numeric'});
+const jp=d=>{const o={};JF.formatToParts(d).forEach(p=>o[p.type]=p.value);return[+o.year,+o.month,+o.day]};
+const pad=n=>String(n).padStart(2,'0'),dd=s=>new Date(s+'T12:00:00'),isoOf=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const jd=s=>dd(s).toLocaleDateString('fa-IR-u-ca-persian',{year:'numeric',month:'2-digit',day:'2-digit'});
+const nz=t=>t.replace(/ي/g,'ی').replace(/ك/g,'ک').replace(/\u200c/g,' ').replace(/\s+/g,' ').trim();
+let sb,rows=[],progs=[],charts={},tabN=1,sel='',rng='0',pgN=40,fq='',onlyLow=false,onlyOpen=false,editId=null,cur=[];
+const pn=id=>(progs.find(p=>p.id===id)||{name:id||'—'}).name,D=r=>r.attended_on||r.created_at.slice(0,10);
+const vals=r=>Object.values(r.q||{}).filter(v=>typeof v==='number'),avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null,r1=v=>v==null?null:Math.round(v*100)/100,low=r=>vals(r).some(v=>v<=2);
+const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
+let L1,L2;const needSB=()=>L1||(L1=ld('supabase.js')),needCh=()=>L2||(L2=ld('chart.umd.min.js').then(()=>{Chart.defaults.font.family="Vazirmatn,Tahoma,sans-serif";Chart.defaults.color='#a9b0d6';Chart.defaults.borderColor='rgba(255,255,255,.1)';Chart.defaults.animation=false}));
+const app=$('app');
+async function boot(){
+ app.innerHTML='<p class="m" style="text-align:center;margin-top:20vh">در حال بارگذاری…</p>';
+ try{await needSB();sb=supabase.createClient(CFG.url,CFG.key);const{data:{session}}=await sb.auth.getSession();session?load():login()}
+ catch(x){app.innerHTML='<p class="m" style="text-align:center;margin-top:20vh">اتصال برقرار نشد. <button onclick="L1=0;boot()">تلاش دوباره</button></p>'}
+}
+function login(m=''){
+ app.innerHTML=`<form class="card" id="login"><h1 style="margin-bottom:10px">ورود مدیر</h1><p class="m neg">${m}</p>
+<div class="f"><input id="em" type="email" dir="ltr" placeholder="ایمیل" autocomplete="username"></div>
+<div class="f pw"><input id="pw" type="password" dir="ltr" placeholder="رمز عبور" autocomplete="current-password"><button type="button" id="eye" aria-label="نمایش رمز"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/><path class="sl" d="M3 3l18 18"/></svg></button></div>
+<button class="pri" style="width:100%">ورود</button></form>`;
+}
+async function load(){
+ const[a,b]=await Promise.all([sb.from('programs').select('*').order('name'),sb.from('responses').select('id,created_at,program,attended_on,q,why,improve,contact,extra,handled').not('q','is',null).order('created_at',{ascending:false}).limit(5000)]);
+ if(a.error||b.error)return login(b.error&&/column/.test(b.error.message)?'ابتدا فایل setup_v4.sql را در Supabase اجرا کنید':'دسترسی ندارید یا اتصال برقرار نیست');
+ progs=a.data;rows=b.data;
+ app.innerHTML='<header><h1>پنل مدیریت انگاریوم</h1><div class="tabs"><button data-tab="1">آمار</button><button data-tab="2">پاسخ‌ها</button><button data-tab="3">برنامه‌ها</button><button id="pw2">رمز</button><button id="out">خروج</button></div></header><div id="mn"></div>';
+ go(tabN);needCh();
+}
+function go(n){tabN=n;pgN=40;document.querySelectorAll('[data-tab]').forEach(b=>b.className=+b.dataset.tab===n?'on':'');n===1?stats():n===2?resp():progUI()}
+const filt=all=>{let a='';if(rng!=='0'){const t=new Date();t.setDate(t.getDate()-+rng);a=isoOf(t)}return rows.filter(r=>(all||!sel||r.program===sel)&&(!a||D(r)>=a))};
+const fbar=x=>`<div class="card bar"><label>برنامه<select id="fp"><option value="">همه برنامه‌ها</option>${progs.map(p=>`<option value="${e(p.id)}" ${p.id===sel?'selected':''}>${e(p.name)}</option>`).join('')}</select></label><label>بازهٔ زمانی<select id="fr">${[['0','همه'],['7','۷ روز اخیر'],['30','۳۰ روز اخیر'],['90','۹۰ روز اخیر']].map(([v,l])=>`<option value="${v}" ${rng===v?'selected':''}>${l}</option>`).join('')}</select></label>${x||''}</div>`;
+const kpi=v=>{const al=v.flatMap(vals),q1=v.map(r=>r.q.q1).filter(Boolean),lo=v.filter(low);return`<div class="card kp"><div><b>${fa(v.length)}</b>پاسخ</div><div><b>${al.length?fa(r1(avg(al))):'—'}</b>میانگین از ۵</div><div><b>${q1.length?fa(Math.round(q1.filter(x=>x>=4).length*100/q1.length))+'٪':'—'}</b>رضایت کلی مثبت</div><div><b>${fa(lo.length)}</b>نمرهٔ پایین</div><div><b>${fa(lo.filter(r=>!r.handled).length)}</b>بدون پیگیری</div></div>`};
+const cnt=a=>{const o={};a.forEach(x=>x&&(o[x]=(o[x]||0)+1));return Object.entries(o).sort((a,b)=>b[1]-a[1])};
+function mk(id,cfg){if(!$(id))return;if(charts[id])charts[id].destroy();charts[id]=new Chart($(id),cfg)}
+function bk(s,g){if(g==='d')return s;const d=dd(s);if(g==='w'){d.setDate(d.getDate()-(d.getDay()+1)%7);return isoOf(d)}const j=jp(d);return j[0]+'-'+pad(j[1])}
+function bl(k,g){if(g==='m'){const[y,m]=k.split('-');return PM[+m-1]+' '+fa(y)}return(g==='w'?'هفتهٔ ':'')+jd(k)}
+const gran=v=>{const d=v.map(D).sort();if(!d.length)return'd';const s=(dd(d[d.length-1])-dd(d[0]))/864e5;return s<=45?'d':s<=200?'w':'m'};
+const rc=x=>{const a=avg(vals(x)),hl=x.extra&&x.extra.highlights||[];return`<div class="rc ${low(x)?'lo':''}"><div class="ph"><b>${e(pn(x.program))}</b><span class="m">${jd(D(x))}</span><span class="tag">${a?fa(r1(a)):'—'}</span></div><div class="sq">${Object.keys(QN).filter(k=>x.q[k]).map(k=>`<span class="tag">${QN[k]}: ${fa(x.q[k])}</span>`).join('')}</div>${Object.entries(x.why||{}).map(([k,t])=>`<p><span class="m">${QN[k]||k}:</span> ${e(t)}</p>`).join('')}${x.improve?`<p>${e(x.improve)}</p>`:''}${hl.length?`<div class="m">${e(hl.join('، '))}</div>`:''}<div class="pa">${x.contact?`<span dir="ltr">${e(x.contact)}</span>`:''}${low(x)?`<label class="ck"><input type="checkbox" data-h="${x.id}" ${x.handled?'checked':''}> پیگیری شد</label>`:''}<button class="dg" data-del="${x.id}">حذف</button></div></div>`};
+/* ---------- آمار ---------- */
+const WDN=['شنبه','یکشنبه','دوشنبه','سه‌شنبه','چهارشنبه','پنجشنبه','جمعه'],RC=['#ff7a7a','#ffa94d','#ffc857','#8fd694','#4fd1a5'];
+const qa=(rs,k)=>avg(rs.map(r=>r.q[k]).filter(x=>typeof x==='number'));
+const cd=(id,t,w)=>`<div class="card${w?' w2':''}"><h3>${t}</h3><div class="ch"><canvas id="${id}"></canvas></div></div>`;
+const ttl=(t,it)=>it.length?`<div class="card"><h3>${t}</h3>${it.join('')}</div>`:'';
+async function stats(){
+ const v=filt(),one=!!sel;let h=fbar()+kpi(v);
+ if(!v.length){$('mn').innerHTML=h+'<div class="card m">پاسخی نیست</div>';return}
+ const by={};v.forEach(r=>(by[r.program]=by[r.program]||[]).push(r));
+ const H=cnt(v.flatMap(r=>r.extra&&r.extra.highlights||[])),W=cnt(v.map(r=>r.extra&&r.extra.with)),S=cnt(v.map(r=>r.extra&&r.extra.source)),pr=Object.entries(by).sort((a,b)=>b[1].length-a[1].length);
+ if(!one)h+=`<div class="card sc"><table><tr><th>برنامه</th><th>پاسخ</th><th>میانگین</th><th>مثبت</th><th>پایین</th>${Object.values(QN).map(n=>`<th>${n}</th>`).join('')}</tr>${[...new Set([...progs.map(p=>p.id),...Object.keys(by)])].map(p=>{const rs=by[p]||[],al=rs.flatMap(vals);return`<tr><td><button class="lk" data-sel="${e(p)}">${e(pn(p))}</button></td><td>${fa(rs.length)}</td><td>${al.length?fa(r1(avg(al))):'—'}</td><td class="pos">${al.length?fa(Math.round(al.filter(x=>x>=4).length*100/al.length))+'٪':'—'}</td><td class="neg">${fa(rs.filter(low).length)}</td>${Object.keys(QN).map(k=>{const a=qa(rs,k);return`<td>${a==null?'—':fa(r1(a))}</td>`}).join('')}</tr>`}).join('')}</table></div>`;
+ else{const A=filt(1);h+=`<div class="card sc"><table><tr><th>سؤال</th><th>این برنامه</th><th>همهٔ برنامه‌ها</th><th>اختلاف</th></tr>${Object.keys(QN).map(k=>{const a=qa(v,k),b=qa(A,k),df=a!=null&&b!=null?r1(a-b):null;return`<tr><td>${QN[k]}</td><td>${a==null?'—':fa(r1(a))}</td><td>${b==null?'—':fa(r1(b))}</td><td class="${df>0?'pos':df<0?'neg':''}">${df==null?'—':(df>0?'+':'')+fa(df)}</td></tr>`}).join('')}</table></div>`}
+ h+=`<div class="g2">${cd('c1',one?'روند میانگین امتیاز':'روند میانگین هر برنامه',1)}${one?'':cd('c2','میانگین امتیاز هر برنامه')+cd('c9','تعداد پاسخ هر برنامه')+cd('c8','مقایسهٔ برنامه‌ها در هر سؤال',1)}${cd('c3','نتیجهٔ هر سؤال (درصد)',1)}${cd('c10','توزیع رضایت کلی')}${cd('c12','تمایل به شرکت مجدد')}${cd('c7','تعداد پاسخ در طول زمان')}${cd('c11','پاسخ‌ها بر اساس روز هفته')}${H.length?cd('c4','بخش‌های جذاب‌تر'):''}${W.length?cd('c5','همراهان'):''}${S.length?cd('c6','نحوهٔ آشنایی'):''}</div>`;
+ const why=[],imp=[];v.forEach(r=>{const t=(one?'':e(pn(r.program))+' · ')+jd(D(r));Object.entries(r.why||{}).forEach(([k,x])=>why.push(`<p><span class="m">${QN[k]||k} · ${t}:</span> ${e(x)}</p>`));if(r.improve)imp.push(`<p><span class="m">${t}:</span> ${e(r.improve)}</p>`)});
+ h+=`<div class="g2" style="margin-top:12px">${ttl('دلایل نمرهٔ پایین (آخرین‌ها)',why.slice(0,10))}${ttl('پیشنهادها (آخرین‌ها)',imp.slice(0,10))}</div>`;
+ $('mn').innerHTML=h;await needCh();
+ const g=gran(v),keys=[...new Set(v.map(r=>bk(D(r),g)))].sort(),lb=keys.map(k=>bl(k,g)),per=(rs,k)=>r1(avg(rs.filter(r=>bk(D(r),g)===k).flatMap(vals)));
+ const bar=(id,L,d,c,hz,sc)=>mk(id,{type:'bar',data:{labels:L,datasets:[{data:d,backgroundColor:c}]},options:{indexAxis:hz?'y':'x',maintainAspectRatio:false,plugins:{legend:{display:false}},scales:sc||{}}});
+ const dn=(id,L)=>mk(id,{type:'doughnut',data:{labels:L.map(x=>x[0]),datasets:[{data:L.map(x=>x[1]),backgroundColor:COL}]},options:{maintainAspectRatio:false}});
+ const dist=(id,k)=>{const x=v.map(r=>r.q[k]);bar(id,[1,2,3,4,5].map(fa),[1,2,3,4,5].map(n=>x.filter(y=>y===n).length),RC)};
+ const ds=(rs,i,l)=>({label:l,borderColor:COL[i],backgroundColor:COL[i],spanGaps:true,tension:.25,data:keys.map(k=>per(rs,k))});
+ mk('c1',{type:'line',data:{labels:lb,datasets:one?[ds(v,0,'میانگین')]:pr.slice(0,8).map(([p,rs],i)=>ds(rs,i,pn(p)))},options:{maintainAspectRatio:false,plugins:{legend:{display:!one}},scales:{y:{min:1,max:5}}}});
+ if(!one){
+  bar('c2',pr.map(([p])=>pn(p)),pr.map(([,rs])=>r1(avg(rs.flatMap(vals)))),COL[0],1,{x:{min:1,max:5}});
+  bar('c9',pr.map(([p])=>pn(p)),pr.map(([,rs])=>rs.length),COL[1],1);
+  mk('c8',{type:'radar',data:{labels:Object.values(QN),datasets:pr.slice(0,5).map(([p,rs],i)=>({label:pn(p),borderColor:COL[i],backgroundColor:COL[i]+'33',pointBackgroundColor:COL[i],data:Object.keys(QN).map(k=>r1(qa(rs,k)))}))},options:{maintainAspectRatio:false,scales:{r:{min:1,max:5,ticks:{display:false,stepSize:1},pointLabels:{font:{size:11}}}}}});
+ }
+ const qs=Object.keys(QN).map(k=>{const x=v.map(r=>r.q[k]).filter(y=>typeof y==='number'),c=x.length||1;return{k,a:avg(x),neg:x.filter(y=>y<=2).length*100/c,mid:x.filter(y=>y===3).length*100/c,pos:x.filter(y=>y>=4).length*100/c}});
+ mk('c3',{type:'bar',data:{labels:qs.map(s=>QN[s.k]+(s.a!=null?' ('+fa(r1(s.a))+')':'')),datasets:[{label:'منفی',data:qs.map(s=>Math.round(s.neg)),backgroundColor:'#ff7a7a'},{label:'متوسط',data:qs.map(s=>Math.round(s.mid)),backgroundColor:'#8a90b5'},{label:'مثبت',data:qs.map(s=>Math.round(s.pos)),backgroundColor:'#4fd1a5'}]},options:{indexAxis:'y',maintainAspectRatio:false,scales:{x:{stacked:true,max:100},y:{stacked:true}}}});
+ dist('c10','q1');dist('c12','q7');
+ bar('c7',lb,keys.map(k=>v.filter(r=>bk(D(r),g)===k).length),COL[1]);
+ bar('c11',WDN,WDN.map((_,i)=>v.filter(r=>(dd(D(r)).getDay()+1)%7===i).length),COL[5]);
+ bar('c4',H.map(x=>x[0]),H.map(x=>x[1]),COL[0],1);dn('c5',W);dn('c6',S);
+}
+/* ---------- پاسخ‌ها ---------- */
+function resp(){
+ $('mn').innerHTML=fbar(`<label>جست‌وجو<input id="fq" value="${e(fq)}"></label><label class="ck"><input type="checkbox" id="fl" ${onlyLow?'checked':''}> نمرهٔ پایین</label><label class="ck"><input type="checkbox" id="fh" ${onlyOpen?'checked':''}> بدون پیگیری</label><button class="pri" id="csv">CSV</button>`)+'<div id="rl"></div>';list()}
+function list(){
+ if(!$('rl'))return;let r=filt();if(onlyLow)r=r.filter(low);if(onlyOpen)r=r.filter(x=>low(x)&&!x.handled);if(fq)r=r.filter(x=>(x.improve+' '+Object.values(x.why||{}).join(' ')).includes(fq));
+ cur=r;$('rl').innerHTML=(r.slice(0,pgN).map(rc).join('')||'<div class="card m">پاسخی نیست</div>')+(r.length>pgN?`<p><button data-more="1">نمایش بیشتر (${fa(r.length-pgN)})</button></p>`:'')}
+function exp(){
+ const H=['تاریخ شرکت (شمسی)','تاریخ شرکت (میلادی)','برنامه','میانگین',...Object.values(QN),'دلایل نمرهٔ پایین','پیشنهاد','شمارهٔ تماس','زمان ثبت','بخش‌های جذاب','همراه','نحوهٔ آشنایی','پیگیری شد'];
+ const q=v=>{v=String(v??'');if(/^[=+\-@]/.test(v))v="'"+v;return'"'+v.replace(/"/g,'""')+'"'},x2=x=>x.extra||{};
+ const L=cur.map(x=>[jd(D(x)),D(x),pn(x.program),r1(avg(vals(x))),...Object.keys(QN).map(k=>x.q[k]),Object.entries(x.why||{}).map(([k,t])=>QN[k]+': '+t).join(' | '),x.improve,x.contact,x.created_at,(x2(x).highlights||[]).join(' | '),x2(x).with,x2(x).source,x.handled?'بله':'خیر'].map(q).join(','));
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+[H.map(q).join(','),...L].join('\r\n')],{type:'text/csv;charset=utf-8'}));a.download='engarium-responses.csv';a.click()}
+/* ---------- برنامه‌ها ---------- */
+const st=id=>{const rs=rows.filter(r=>r.program===id);return[rs.length,avg(rs.flatMap(vals))]};
+const pstat=p=>{const t=isoOf(new Date());return!p.active?['غیرفعال','m']:p.ends_on&&p.ends_on<t?['پایان‌یافته','neg']:p.starts_on&&p.starts_on>t?['هنوز شروع نشده','m']:['فعال','pos']};
+const F=(p,idf)=>`<div class="pf">${idf?'<label>شناسهٔ لینک (اختیاری)<input data-x="id" dir="ltr" placeholder="lunar-eclipse"></label>':''}<label>نام برنامه *<input data-x="name" value="${e(p.name||'')}"></label><label>دسته<select data-x="category">${CATS.map(c=>`<option ${p.category===c?'selected':''}>${c}</option>`).join('')}</select></label><label class="w2">توضیح<input data-x="description" value="${e(p.description||'')}"></label><label>شروع نمایش<input type="date" data-x="starts_on" value="${e(p.starts_on||'')}"></label><label>پایان نمایش<input type="date" data-x="ends_on" value="${e(p.ends_on||'')}"></label><label class="ck"><input type="checkbox" data-x="active" ${p.active!==false?'checked':''}> فعال</label></div>`;
+const rd=sc=>{const o={};sc.querySelectorAll('[data-x]').forEach(i=>o[i.dataset.x]=i.type==='checkbox'?i.checked:i.value.trim());o.name=nz(o.name||'');return o};
+const ck=(o,id)=>!o.name?'نام برنامه را بنویسید.':progs.some(x=>x.id!==id&&nz(x.name)===o.name)?'برنامه‌ای با این نام هست.':o.starts_on&&o.ends_on&&o.ends_on<o.starts_on?'تاریخ پایان قبل از شروع است.':'';
+const pcard=p=>{if(editId===p.id)return`<div class="pc" data-id="${e(p.id)}">${F(p,0)}<div class="pa"><button class="pri" data-sv="1">ذخیره</button><button data-cn="1">انصراف</button></div></div>`;
+ const[n,a]=st(p.id),L=location.origin+location.pathname.replace(/admin\.html$/,'')+'?p='+p.id,[sl,sc]=pstat(p);
+ return`<div class="pc" data-id="${e(p.id)}"><div class="ph"><b>${e(p.name)}</b><span class="tag ${sc}">${sl}</span>${p.category?`<span class="tag m">${e(p.category)}</span>`:''}</div>${p.description?`<div class="m">${e(p.description)}</div>`:''}<div class="m">${fa(n)} پاسخ${a?' · میانگین '+fa(r1(a)):''}${p.starts_on?' · از '+jd(p.starts_on):''}${p.ends_on?' · تا '+jd(p.ends_on):''}</div><div class="pa"><button data-st="1">آمار</button><button data-cp="${e(L)}">کپی لینک</button><button data-ed="1">ویرایش</button><button data-tg="1">${p.active?'غیرفعال':'فعال'}</button><button class="dg" data-rm="1">حذف</button></div></div>`};
+function progUI(){$('mn').innerHTML=`<div class="card" id="nf"><h3>برنامهٔ جدید</h3>${F({active:true},1)}<p><button class="pri" id="add1">افزودن</button></p></div><div class="pg">${progs.map(pcard).join('')}</div>`}
+const rp=async()=>{const a=await sb.from('programs').select('*').order('name');if(a.data)progs=a.data;go(3)};
+const pf=o=>({name:o.name,category:o.category,description:o.description||null,starts_on:o.starts_on||null,ends_on:o.ends_on||null,active:o.active});
+async function pAct(b){const d=b.dataset,c=b.closest('.pc'),id=c&&c.dataset.id,p=id&&progs.find(x=>x.id===id);
+ if(d.cp){try{await navigator.clipboard.writeText(d.cp);b.textContent='کپی شد'}catch(x){prompt('لینک:',d.cp)}return}
+ if(d.st){sel=id;return go(1)}if(d.ed){editId=id;return progUI()}if(d.cn){editId=null;return progUI()}
+ if(d.sv){const o=rd(c),m=ck(o,id);if(m)return alert(m);const{error}=await sb.from('programs').update(pf(o)).eq('id',id);if(error)return alert('ذخیره نشد: '+error.message);editId=null;return rp()}
+ if(d.tg){const{error}=await sb.from('programs').update({active:!p.active}).eq('id',id);return error?alert(error.message):rp()}
+ if(d.rm){const n=st(id)[0];if(!confirm('برنامهٔ «'+p.name+'» حذف شود؟'))return;
+  if(n&&confirm(fa(n)+' پاسخ ثبت شده است.\nتأیید: پاسخ‌ها هم پاک شوند\nلغو: پاسخ‌ها بماند')){const r=await sb.from('responses').delete().eq('program',id);if(r.error)return alert('حذف پاسخ‌ها ناموفق بود: '+r.error.message);rows=rows.filter(x=>x.program!==id)}
+  const{error}=await sb.from('programs').delete().eq('id',id);return error?alert('حذف نشد: '+error.message):rp()}
+ if(b.id==='add1'){const o=rd($('nf')),m=ck(o,''),nid=o.id;if(m)return alert(m);if(nid&&(!/^[a-z0-9-]{2,30}$/.test(nid)||progs.some(x=>x.id===nid)))return alert('شناسهٔ لینک باید ۲ تا ۳۰ حرف انگلیسی کوچک، عدد یا خط‌تیره و یکتا باشد.');
+  const{error}=await sb.from('programs').insert([{id:nid||'p'+Date.now().toString(36),...pf(o)}]);return error?alert('ثبت نشد: '+error.message):rp()}
+}
+/* ---------- رویدادها ---------- */
+app.addEventListener('click',async ev=>{const b=ev.target.closest('button');if(!b)return;const d=b.dataset;
+ if(b.id==='eye'){const i=$('pw'),h=i.type==='password';i.type=h?'text':'password';b.classList.toggle('on',h);return}
+ if(d.tab)return go(+d.tab);
+ if(b.id==='out'){await sb.auth.signOut();return login()}
+ if(b.id==='pw2'){const x=prompt('رمز جدید (حداقل ۸ نویسه):');if(!x)return;if(x.length<8)return alert('رمز کوتاه است');const{error}=await sb.auth.updateUser({password:x});return alert(error?error.message:'رمز تغییر کرد')}
+ if(d.sel){sel=d.sel;return go(1)}
+ if(d.more){pgN+=40;return list()}
+ if(b.id==='csv')return exp();
+ if(d.del){if(!confirm('این پاسخ حذف شود؟'))return;const{error}=await sb.from('responses').delete().eq('id',d.del);if(error)return alert('حذف نشد: '+error.message);rows=rows.filter(x=>String(x.id)!==d.del);return tabN===2?list():go(tabN)}
+ if(tabN===3)pAct(b)});
+app.addEventListener('change',async ev=>{const t=ev.target,d=t.dataset;
+ if(t.id==='fp'){sel=t.value;return go(tabN)}if(t.id==='fr'){rng=t.value;return go(tabN)}
+ if(t.id==='fl'){onlyLow=t.checked;pgN=40;return list()}if(t.id==='fh'){onlyOpen=t.checked;pgN=40;return list()}
+ if(d.h){const r=rows.find(x=>String(x.id)===d.h);r.handled=t.checked;const{error}=await sb.from('responses').update({handled:r.handled}).eq('id',d.h);if(error){alert('ذخیره نشد: '+error.message);r.handled=!r.handled;t.checked=r.handled}else if(tabN===2&&onlyOpen)list()}});
+app.addEventListener('input',ev=>{if(ev.target.id==='fq'){fq=ev.target.value.trim();pgN=40;list()}});
+app.addEventListener('submit',async ev=>{ev.preventDefault();const b=ev.target.querySelector('button.pri');b.disabled=true;const{error}=await sb.auth.signInWithPassword({email:$('em').value.trim(),password:$('pw').value});if(error){login('ایمیل یا رمز اشتباه است')}else load()});
+boot();
+</script>
+</body>
+</html>
