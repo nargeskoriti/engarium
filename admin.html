@@ -51,7 +51,7 @@ let sb,rows=[],progs=[],charts={},tabN=1,sel='',rng='0',pgN=40,fq='',onlyLow=fal
 const pn=id=>(progs.find(p=>p.id===id)||{name:id||'—'}).name,D=r=>r.attended_on||r.created_at.slice(0,10);
 const vals=r=>Object.values(r.q||{}).filter(v=>typeof v==='number'),avg=a=>a.length?a.reduce((s,v)=>s+v,0)/a.length:null,r1=v=>v==null?null:Math.round(v*100)/100,low=r=>vals(r).some(v=>v<=2);
 const ld=src=>new Promise((ok,no)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=no;document.head.appendChild(s)});
-let L1,L2;const needSB=()=>L1||(L1=ld('supabase.js')),needCh=()=>L2||(L2=ld('chart.umd.min.js').then(()=>{Chart.defaults.font.family="Vazirmatn,Tahoma,sans-serif";Chart.defaults.color='#a9b0d6';Chart.defaults.borderColor='rgba(255,255,255,.1)';Chart.defaults.animation=false}));
+let L1,L2;const needSB=()=>L1||(L1=ld('supabase.js')),needCh=()=>L2||(L2=ld('chart.umd.min.js').then(()=>{Chart.defaults.font.family="Vazirmatn,Tahoma,sans-serif";Chart.defaults.color='#a9b0d6';Chart.defaults.borderColor='rgba(255,255,255,.1)';Chart.defaults.animation=false;Chart.defaults.locale='fa-IR'}));
 const app=$('app');
 async function boot(){
  app.innerHTML='<p class="m" style="text-align:center;margin-top:20vh">در حال بارگذاری…</p>';
@@ -75,6 +75,7 @@ function go(n){tabN=n;pgN=40;document.querySelectorAll('[data-tab]').forEach(b=>
 const filt=all=>{let a='';if(rng!=='0'){const t=new Date();t.setDate(t.getDate()-+rng);a=isoOf(t)}return rows.filter(r=>(all||!sel||r.program===sel)&&(!a||D(r)>=a))};
 const fbar=x=>`<div class="card bar"><label>برنامه<select id="fp"><option value="">همه برنامه‌ها</option>${progs.map(p=>`<option value="${e(p.id)}" ${p.id===sel?'selected':''}>${e(p.name)}</option>`).join('')}</select></label><label>بازهٔ زمانی<select id="fr">${[['0','همه'],['7','۷ روز اخیر'],['30','۳۰ روز اخیر'],['90','۹۰ روز اخیر']].map(([v,l])=>`<option value="${v}" ${rng===v?'selected':''}>${l}</option>`).join('')}</select></label>${x||''}</div>`;
 const kpi=v=>{const al=v.flatMap(vals),q1=v.map(r=>r.q.q1).filter(Boolean),lo=v.filter(low);return`<div class="card kp"><div><b>${fa(v.length)}</b>پاسخ</div><div><b>${al.length?fa(r1(avg(al))):'—'}</b>میانگین از ۵</div><div><b>${q1.length?fa(Math.round(q1.filter(x=>x>=4).length*100/q1.length))+'٪':'—'}</b>رضایت کلی مثبت</div><div><b>${fa(lo.length)}</b>نمرهٔ پایین</div><div><b>${fa(lo.filter(r=>!r.handled).length)}</b>بدون پیگیری</div></div>`};
+const wl=s=>{const o=[];let c='';String(s).split(' ').forEach(x=>{if(c&&(c+' '+x).length>16){o.push(c);c=x}else c=(c+' '+x).trim()});if(c)o.push(c);return o};
 const cnt=a=>{const o={};a.forEach(x=>x&&(o[x]=(o[x]||0)+1));return Object.entries(o).sort((a,b)=>b[1]-a[1])};
 function mk(id,cfg){if(!$(id))return;if(charts[id])charts[id].destroy();charts[id]=new Chart($(id),cfg)}
 function bk(s,g){if(g==='d')return s;const d=dd(s);if(g==='w'){d.setDate(d.getDate()-(d.getDay()+1)%7);return isoOf(d)}const j=jp(d);return j[0]+'-'+pad(j[1])}
@@ -98,7 +99,7 @@ async function stats(){
  h+=`<div class="g2" style="margin-top:12px">${ttl('دلایل نمرهٔ پایین (آخرین‌ها)',why.slice(0,10))}${ttl('پیشنهادها (آخرین‌ها)',imp.slice(0,10))}</div>`;
  $('mn').innerHTML=h;await needCh();
  const g=gran(v),keys=[...new Set(v.map(r=>bk(D(r),g)))].sort(),lb=keys.map(k=>bl(k,g)),per=(rs,k)=>r1(avg(rs.filter(r=>bk(D(r),g)===k).flatMap(vals)));
- const bar=(id,L,d,c,hz,sc)=>mk(id,{type:'bar',data:{labels:L,datasets:[{data:d,backgroundColor:c}]},options:{indexAxis:hz?'y':'x',maintainAspectRatio:false,plugins:{legend:{display:false}},scales:sc||{}}});
+ const bar=(id,L,d,c,hz,sc)=>mk(id,{type:'bar',data:{labels:hz?L.map(wl):L,datasets:[{data:d,backgroundColor:c}]},options:{indexAxis:hz?'y':'x',maintainAspectRatio:false,plugins:{legend:{display:false}},scales:sc||{}}});
  const dn=(id,L)=>mk(id,{type:'doughnut',data:{labels:L.map(x=>x[0]),datasets:[{data:L.map(x=>x[1]),backgroundColor:COL}]},options:{maintainAspectRatio:false}});
  const dist=(id,k)=>{const x=v.map(r=>r.q[k]);bar(id,[1,2,3,4,5].map(fa),[1,2,3,4,5].map(n=>x.filter(y=>y===n).length),RC)};
  const ds=(rs,i,l)=>({label:l,borderColor:COL[i],backgroundColor:COL[i],spanGaps:true,tension:.25,data:keys.map(k=>per(rs,k))});
@@ -109,7 +110,7 @@ async function stats(){
   mk('c8',{type:'radar',data:{labels:Object.values(QN),datasets:pr.slice(0,5).map(([p,rs],i)=>({label:pn(p),borderColor:COL[i],backgroundColor:COL[i]+'33',pointBackgroundColor:COL[i],data:Object.keys(QN).map(k=>r1(qa(rs,k)))}))},options:{maintainAspectRatio:false,scales:{r:{min:1,max:5,ticks:{display:false,stepSize:1},pointLabels:{font:{size:11}}}}}});
  }
  const qs=Object.keys(QN).map(k=>{const x=v.map(r=>r.q[k]).filter(y=>typeof y==='number'),c=x.length||1;return{k,a:avg(x),neg:x.filter(y=>y<=2).length*100/c,mid:x.filter(y=>y===3).length*100/c,pos:x.filter(y=>y>=4).length*100/c}});
- mk('c3',{type:'bar',data:{labels:qs.map(s=>QN[s.k]+(s.a!=null?' ('+fa(r1(s.a))+')':'')),datasets:[{label:'منفی',data:qs.map(s=>Math.round(s.neg)),backgroundColor:'#ff7a7a'},{label:'متوسط',data:qs.map(s=>Math.round(s.mid)),backgroundColor:'#8a90b5'},{label:'مثبت',data:qs.map(s=>Math.round(s.pos)),backgroundColor:'#4fd1a5'}]},options:{indexAxis:'y',maintainAspectRatio:false,scales:{x:{stacked:true,max:100},y:{stacked:true}}}});
+ mk('c3',{type:'bar',data:{labels:qs.map(s=>wl(QN[s.k]+(s.a!=null?' ('+fa(r1(s.a))+')':''))),datasets:[{label:'منفی',data:qs.map(s=>Math.round(s.neg)),backgroundColor:'#ff7a7a'},{label:'متوسط',data:qs.map(s=>Math.round(s.mid)),backgroundColor:'#8a90b5'},{label:'مثبت',data:qs.map(s=>Math.round(s.pos)),backgroundColor:'#4fd1a5'}]},options:{indexAxis:'y',maintainAspectRatio:false,scales:{x:{stacked:true,max:100},y:{stacked:true}}}});
  dist('c10','q1');dist('c12','q7');
  bar('c7',lb,keys.map(k=>v.filter(r=>bk(D(r),g)===k).length),COL[1]);
  bar('c11',WDN,WDN.map((_,i)=>v.filter(r=>(dd(D(r)).getDay()+1)%7===i).length),COL[5]);
